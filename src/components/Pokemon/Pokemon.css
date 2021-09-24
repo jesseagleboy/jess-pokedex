@@ -1,0 +1,54 @@
+.pokemon {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-areas: 
+    "image image . name"
+    "image image . name"
+    "image image . energy"
+    "image image . energy";
+
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    grid-area: image;
+    margin-right: 2rem;
+}
+
+.name {
+    grid-area: name;
+}
+
+.energy {
+    grid-area: energy;
+}
+
+@media only screen and (max-width: 640px) {
+    .pokemon {
+        display: grid;
+        grid-template-areas: 
+        "image image"
+        "image image"
+        "name name"
+        "energy energy";
+    
+        justify-items: center;
+    }
+    
+    img {
+        grid-area: image;
+        width: 85%;
+        height: auto;
+        margin: 0 auto;
+    }
+    
+    .name {
+        grid-area: name;
+    }
+    
+    .energy {
+        grid-area: energy;
+    }
+
+}
