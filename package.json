@@ -20,12 +20,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "run-p react-build server",
+    "build": "run-p server run-build serve-build",
     "react-build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "node src/server.js",
-    "together": "run-p start server"
+    "together": "run-p start server",
+    "serve-build": "yarn global add serve; serve -s build"
   },
   "eslintConfig": {
     "extends": [
