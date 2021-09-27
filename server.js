@@ -1,12 +1,9 @@
-import express from 'express';
-import morgan from 'morgan';
-import sqlite3 from 'sqlite3';
-import cors from 'cors';
-import path, {dirname} from 'path';
-import {fileURLToPath} from 'url';
+const express = require('express');
+const morgan = require('morgan');
+const sqlite3 = require('sqlite3');
+const cors = require('cors');
+const path = require('path');
 const app = express();
-//dirname from path and fileURL are used to make for ES6 dirname constant
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 
 const db = new sqlite3.Database(process.env.TEST_DATABASE || 'src/Pokemon.db', err => {
@@ -69,7 +66,6 @@ app.get('/pokemon/:name', (req, res, next) => {
         if (err) {
             console.log(err);
         }
-        //res.sendFile(path.join(__dirname, '/public', 'pokemon.html'));
         res.status(200).send({pokemon: row});
     });
 });
