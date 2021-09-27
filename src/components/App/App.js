@@ -7,7 +7,7 @@ import Home from '../Home/Home';
 const PokemonDatabaseURL = "http://192.168.1.3:3001";
 
 const getPokemonList = async () => {
-  const response = await fetch(PokemonDatabaseURL);
+  const response = await fetch(`${PokemonDatabaseURL}`);
   if (response.ok) {
     const jsonResponse = await response.json();
     return jsonResponse.Pokemon;

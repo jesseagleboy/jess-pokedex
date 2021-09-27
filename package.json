@@ -9,6 +9,7 @@
     "cors": "^2.8.5",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12",
+    "npm-run-all": "^4.1.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-draggable": "^4.4.4",
@@ -18,10 +19,13 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "node src/server.js && react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "build": "run-p server react-build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "nodemon src/server.js",
+    "together": "run-p server start"
   },
   "eslintConfig": {
     "extends": [
