@@ -2,12 +2,11 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import './Pokemon.css';
 
-const PokemonDatabaseURL = "http://192.168.1.3:3001";
-
 const pokePage = {name: '', energy: '', image: ''};
 
 const getPokemon = async (pokemonParam) => {
-  const response = await fetch(`${PokemonDatabaseURL}/${pokemonParam}`);
+  const response = await fetch(`/pokemon/${pokemonParam}`);
+  console.log(response);
   if (response.ok) {
     const jsonResponse = await response.json();
     if (jsonResponse.hasOwnProperty("pokemon")) {
@@ -25,6 +24,7 @@ function Pokemon(props) {
     const pokemon = window.location.pathname.match(/[A-Za-z]/g);
     const joinString = pokemon.join("");
     getPokemon(joinString).then((response) => {
+      console.log(response);
       pokePage.name = response.pokemon.Name;
       pokePage.energy = response.pokemon.Energy;
       pokePage.image = response.pokemon.Image;

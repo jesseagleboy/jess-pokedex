@@ -4,10 +4,10 @@ import {useState} from 'react';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Pokemon from "../Pokemon/Pokemon";
 import Home from '../Home/Home';
-const PokemonDatabaseURL = "http://192.168.1.3:3001";
 
 const getPokemonList = async () => {
-  const response = await fetch(`${PokemonDatabaseURL}`);
+  const response = await fetch(`/homefetch`);
+  console.log(response);
   if (response.ok) {
     const jsonResponse = await response.json();
     return jsonResponse.Pokemon;
@@ -18,9 +18,12 @@ const getPokemonList = async () => {
 function App() {
   
   const [pokemonList, setPokemonList] = useState([]);
-  //const [chosenPokemon, setChosenPokemon] = useState([]);
+
+  console.log(pokemonList);
+
   if (pokemonList.length === 0) {
     getPokemonList().then((response) => setPokemonList(response));
+    console.log(pokemonList);
   }
 
   return (
