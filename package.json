@@ -21,11 +21,12 @@
   "scripts": {
     "start": "react-scripts start",
     "react-build": "react-scripts build",
-    "build": "run-p server react-build",
+    "build": "run-p react-build; run-p server build-serving",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "nodemon src/server.js",
-    "together": "run-p server start"
+    "together": "run-p server start",
+    "build-serving": "yarn global add serve; serve -s build"
   },
   "eslintConfig": {
     "extends": [
