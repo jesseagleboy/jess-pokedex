@@ -13,9 +13,6 @@ const getPokemonList = async () => {
     return jsonResponse.Pokemon;
   }
 };
-
-
-  //set the value of a response to a state
   
 
 function App() {
