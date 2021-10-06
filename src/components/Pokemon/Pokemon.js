@@ -21,12 +21,14 @@ function Pokemon(props) {
   // Always use state. do not use global variables
   const [pokePage, setPokePage] = React.useState({Name: '', Energy: '', Image: ''});
 
+  const pokemonState = location.state?.pokemon
+
   React.useEffect(() => {
     async function doEffect() {
       let pokemon
       // If we came here from the home page, we have all the data saved in location state
-      if (location.state != null && location.state.pokemon != null) {
-        pokemon = location.state.pokemon
+      if (pokemonState != null) {
+        pokemon = pokemonState
       // Otherwise, we need to query it using the pokemon name from the path props
       } else {
         pokemon = await getPokemon(params.pokemon)
@@ -34,7 +36,7 @@ function Pokemon(props) {
       setPokePage(pokemon)
     }
     doEffect()
-  }, []); // Only do on first mount
+  }, [params.pokemon, pokemonState]); // Fetch on first time and whenever either of these change
 
   return (
     <div className='pokemon'>
