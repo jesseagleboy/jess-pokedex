@@ -29,8 +29,8 @@ const formatName = name => {
     return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
-
-app.get('/homefetch', (req, res, next) => {
+// This gets all pokemon
+app.get('/api/pokemon', (req, res, next) => {
     console.log('Hi, there');
     db.all("SELECT * FROM Pokemon", (err, rows) => {
         if (err) {
@@ -42,26 +42,17 @@ app.get('/homefetch', (req, res, next) => {
 
 });
 
-app.get('/ten', (req, res, next) => {
-    console.log('Hello, everyone!');
-    res.status(200).send('<h1>Hi, World!</h1>');
-});
-
-app.get('/chickenTest', (req, res, next) => {
-    console.log('We got the chicken test');
-    res.send({text: 'This is a chicken response'});
-});
-
-
-
-app.get('/pokemon/:name', (req, res, next) => {
-    
+// This gets specific pokemon
+app.get('/api/pokemon/:name', (req, res, next) => {
     if (req.params.name === null) {
         console.log("This is empty!");
         res.send({pokemon: null});
     }
-    
+
     const formattedName = formatName(req.params.name);
+    // General note here - you are being very inconsistent with your casing. Sometimes you write Name, sometimes name
+    // sometimes Pokemon, sometimes pokemon, sometimes Energy, sometimes energy. you get the idea. you gotta be
+    // consistent. I would recommend renaming everything to be camelCase
     db.get("SELECT * FROM Pokemon WHERE name = $name", {$name: formattedName}, (err, row) => {
         if (err) {
             console.log(err);
@@ -70,12 +61,10 @@ app.get('/pokemon/:name', (req, res, next) => {
     });
 });
 
-app.get('/:name', (req, res, next) => {
-    
-    res.send(`<p>Hello, there!</p>`)
-});
-
-
+// You need to send the index.html that loads all the react code for every route that isnt getting data from the API
+app.use('*', (_, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
 
 app.listen(PORT, () => {
     console.log(`Listening on PORT: ${PORT}`);
