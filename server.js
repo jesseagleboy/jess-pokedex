@@ -30,7 +30,7 @@ const formatName = name => {
 }
 
 // This gets all pokemon
-app.get('/api/pokemon', (req, res, next) => {
+app.get('/api/pokemon', (_, res) => {
     console.log('Hi, there');
     db.all("SELECT * FROM Pokemon", (err, rows) => {
         if (err) {
@@ -43,7 +43,7 @@ app.get('/api/pokemon', (req, res, next) => {
 });
 
 // This gets specific pokemon
-app.get('/api/pokemon/:name', (req, res, next) => {
+app.get('/api/pokemon/:name', (req, res) => {
     if (req.params.name === null) {
         console.log("This is empty!");
         res.send({pokemon: null});
