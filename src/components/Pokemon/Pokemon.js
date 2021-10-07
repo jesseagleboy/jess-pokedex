@@ -1,45 +1,48 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import './Pokemon.css';
 
-const pokePage = {name: '', energy: '', image: ''};
-
 const getPokemon = async (pokemonParam) => {
-  const response = await fetch(`/pokemon/${pokemonParam}`);
+  const response = await fetch(`/api/pokemon/${pokemonParam}`);
   console.log(response);
   if (response.ok) {
     const jsonResponse = await response.json();
     if (jsonResponse.hasOwnProperty("pokemon")) {
-        return jsonResponse;
+        return jsonResponse.pokemon;
     } else {
-      return { pokemon: { Name: "Unknown", Energy: "Mysterious", image: "" } };
+      return { Name: "Unknown", Energy: "Mysterious", Image: "" };
     }
   }
 };
 
 function Pokemon(props) {
   const location = useLocation();
+  const params = useParams();
+  // Always use state. do not use global variables
+  const [pokePage, setPokePage] = React.useState({Name: '', Energy: '', Image: ''});
 
-  if (location.state === undefined) {
-    const pokemon = window.location.pathname.match(/[A-Za-z]/g);
-    const joinString = pokemon.join("");
-    getPokemon(joinString).then((response) => {
-      console.log(response);
-      pokePage.name = response.pokemon.Name;
-      pokePage.energy = response.pokemon.Energy;
-      pokePage.image = response.pokemon.Image;
-    });
-  } else {
-    pokePage.name = location.state.pokemon.Name;
-    pokePage.energy = location.state.pokemon.Energy;
-    pokePage.image = location.state.pokemon.Image;
-  }
+  const pokemonState = location.state?.pokemon
+
+  React.useEffect(() => {
+    async function doEffect() {
+      let pokemon
+      // If we came here from the home page, we have all the data saved in location state
+      if (pokemonState != null) {
+        pokemon = pokemonState
+      // Otherwise, we need to query it using the pokemon name from the path props
+      } else {
+        pokemon = await getPokemon(params.pokemon)
+      }
+      setPokePage(pokemon)
+    }
+    doEffect()
+  }, [params.pokemon, pokemonState]); // Fetch on first time and whenever either of these change
 
   return (
     <div className='pokemon'>
-      <img src={pokePage.image} alt={pokePage.name}/>
-      <h2 className='name'>Name: {pokePage.name}</h2>
-      <h3 className='energy'>Energy: {pokePage.energy}</h3>
+      <img src={pokePage.Image} alt={pokePage.Name}/>
+      <h2 className='name'>Name: {pokePage.Name}</h2>
+      <h3 className='energy'>Energy: {pokePage.Energy}</h3>
     </div>
   );
 }
