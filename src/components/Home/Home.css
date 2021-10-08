@@ -1,6 +1,13 @@
-
+.listdiv {
+    display: inline-block;
+    margin-left: 200px;
+}
 
 img {
-    max-width: 200px;
-    padding: 100px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin-left: 200px;
+    max-width: 500px;
+    /* transition: margin-left 2s; */
 }

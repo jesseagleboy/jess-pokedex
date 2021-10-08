@@ -2,6 +2,7 @@
   "name": "pokedex",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -23,7 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "together": "react-scripts build && nodemon server.js"
+    "together": "react-scripts build && nodemon server.js",
+    "dev-run": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [
@@ -42,6 +44,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:3001"
+  }
 }

@@ -16,7 +16,7 @@ const db = new sqlite3.Database(process.env.TEST_DATABASE || 'src/Pokemon.db', e
 
 app.use(express.static(path.join(__dirname, 'build')));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 
 
