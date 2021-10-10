@@ -3,7 +3,6 @@ import "./Home.css";
 
 function Home(props) {
   console.log(props.pokemonList.length);
-  let rotateRight = 0;
   let rotateLeft = 0;
   let rotateToBe = true;
 
@@ -46,8 +45,25 @@ function Home(props) {
     }
   }
 
+  function closeNodes (e) {
+    console.log('This has closed');
+    const children = e.target.parentNode.parentNode.children;
+    const imgsLength = children.length;
+
+    if (!rotateToBe) {
+      for (let i = 0; i < imgsLength; i++) {
+        const pokeChild = children[i].children[0];
+        pokeChild.style.transform = `rotate(0deg)`;
+        pokeChild.style.transformOrigin = "left bottom";
+        pokeChild.style.transition = "transform 2s";
+      }
+
+      rotateToBe = true;
+    }
+  }
+
   return (
-    <div class="listdiv" onMouseOver={childNodes}>
+    <div className="listdiv" onMouseOver={childNodes} onMouseOut={closeNodes}>
       {props.pokemonList.map((Pokemon, index) => {
         return (
           <Link
