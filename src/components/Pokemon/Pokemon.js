@@ -40,9 +40,9 @@ function Pokemon(props) {
 
   return (
     <div className='pokemon'>
-      <img src={pokePage.Image} alt={pokePage.Name}/>
-      <h2 className='name'>Name: {pokePage.Name}</h2>
-      <h3 className='energy'>Energy: {pokePage.Energy}</h3>
+      <img className='img' src={pokePage.image} alt={pokePage.name}/>
+      <h2 className='name'>Name: {pokePage.category}</h2>
+      <h3 className='energy'>Energy: {pokePage.name}</h3>
     </div>
   );
 }

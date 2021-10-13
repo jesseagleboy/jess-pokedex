@@ -11,8 +11,9 @@
     align-items: center;
 }
 
-img {
+.img {
     grid-area: image;
+    position: none;
     margin-right: 2rem;
 }
 
@@ -36,11 +37,12 @@ img {
         justify-items: center;
     }
     
-    img {
+    .img {
         grid-area: image;
         width: 85%;
         height: auto;
         margin: 0 auto;
+        border: 5px black solid;
     }
     
     .name {

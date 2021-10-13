@@ -32,11 +32,11 @@ const formatName = name => {
 // This gets all pokemon
 app.get('/api/pokemon', (_, res) => {
     console.log('Hi, there');
-    db.all("SELECT * FROM Pokemon", (err, rows) => {
+    db.all("SELECT * FROM Energy", (err, rows) => {
         if (err) {
             console.log(err);
         }
-
+        
         res.send({Pokemon: rows});
     });
 

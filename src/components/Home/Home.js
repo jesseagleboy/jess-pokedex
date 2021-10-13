@@ -63,17 +63,17 @@ function Home(props) {
   }
 
   return (
-    <div className="listdiv" onMouseOver={childNodes} onMouseOut={closeNodes}>
+    <div onMouseOver={childNodes} onMouseOut={closeNodes}>
       {props.pokemonList.map((Pokemon, index) => {
         return (
           <Link
             key={index}
             to={{
-              pathname: `${Pokemon.Name}`,
+              pathname: `${Pokemon.id}/${Pokemon.name}`,
               state: { pokemon: Pokemon },
             }}
           >
-            <img src={`${Pokemon.Image}`} alt={`${Pokemon.Name}`} />
+            <img className='imgoflist'src={`${Pokemon.image}`} alt={`${Pokemon.name}`} />
           </Link>
         );
       })}

@@ -1,13 +1,9 @@
-.listdiv {
-    display: inline-block;
-    margin-left: 200px;
-}
-
-img {
+.imgoflist {
     position: absolute;
     left: 0px;
     top: 0px;
     margin-left: 200px;
-    max-width: 500px;
+    margin-top: 100px;
+    max-width: 100px;
     /* transition: margin-left 2s; */
 }
