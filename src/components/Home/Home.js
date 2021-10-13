@@ -69,7 +69,7 @@ function Home(props) {
           <Link
             key={index}
             to={{
-              pathname: `${Pokemon.id}/${Pokemon.name}`,
+              pathname: `${Pokemon.category}/${Pokemon.id}/${Pokemon.name}`,
               state: { pokemon: Pokemon },
             }}
           >

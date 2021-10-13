@@ -43,20 +43,24 @@ app.get('/api/pokemon', (_, res) => {
 });
 
 // This gets specific pokemon
-app.get('/api/pokemon/:name', (req, res) => {
+app.get('/api/:category/:id/:name', (req, res) => {
     if (req.params.name === null) {
         console.log("This is empty!");
         res.send({pokemon: null});
     }
 
+    console.log(req.params);
+    console.log('We are here!');
+
     const formattedName = formatName(req.params.name);
     // General note here - you are being very inconsistent with your casing. Sometimes you write Name, sometimes name
     // sometimes Pokemon, sometimes pokemon, sometimes Energy, sometimes energy. you get the idea. you gotta be
     // consistent. I would recommend renaming everything to be camelCase
-    db.get("SELECT * FROM Pokemon WHERE name = $name", {$name: formattedName}, (err, row) => {
+    db.get("SELECT * FROM Energy WHERE id=$id", {$id: req.params.id}, (err, row) => {
         if (err) {
             console.log(err);
         }
+        console.log(row);
         res.status(200).send({pokemon: row});
     });
 });

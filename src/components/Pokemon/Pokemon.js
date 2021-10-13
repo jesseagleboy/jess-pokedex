@@ -3,7 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import './Pokemon.css';
 
 const getPokemon = async (pokemonParam) => {
-  const response = await fetch(`/api/pokemon/${pokemonParam}`);
+  const response = await fetch(`/api/${pokemonParam.category}/${pokemonParam.id}/${pokemonParam.name}`);
   console.log(response);
   if (response.ok) {
     const jsonResponse = await response.json();
@@ -18,6 +18,7 @@ const getPokemon = async (pokemonParam) => {
 function Pokemon(props) {
   const location = useLocation();
   const params = useParams();
+  console.log('This is params: ', useParams());
   // Always use state. do not use global variables
   const [pokePage, setPokePage] = React.useState({Name: '', Energy: '', Image: ''});
 
@@ -31,7 +32,7 @@ function Pokemon(props) {
         pokemon = pokemonState
       // Otherwise, we need to query it using the pokemon name from the path props
       } else {
-        pokemon = await getPokemon(params.pokemon)
+        pokemon = await getPokemon(params);
       }
       setPokePage(pokemon)
     }

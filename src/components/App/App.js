@@ -37,7 +37,7 @@ function App() {
           <Route exact path='/'>
             <Home pokemonList={pokemonList}/>
           </Route>
-          <Route path='/:pokemon'>
+          <Route path='/:category/:id/:name'>
             <Pokemon />
           </Route>
         </Switch>

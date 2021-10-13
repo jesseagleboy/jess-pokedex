@@ -29,23 +29,23 @@
     .pokemon {
         display: grid;
         grid-template-areas: 
-        "image image"
-        "image image"
-        "name name"
-        "energy energy";
+        "image"
+        "image"
+        "name"
+        "energy";
     
         justify-items: center;
     }
     
     .img {
         grid-area: image;
-        width: 85%;
+        max-width: 400px;
         height: auto;
         margin: 0 auto;
-        border: 5px black solid;
     }
     
     .name {
+        margin-top: 20px;
         grid-area: name;
     }
     
