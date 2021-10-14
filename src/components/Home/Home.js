@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
+import {isMobile} from 'react-device-detect';
 import "./Home.css";
 
 function Home(props) {
   console.log(props.pokemonList.length);
   let rotateLeft = 0;
   let rotateToBe = true;
-
-  //build a stylesheet in a function to attribute to each individual image (work in progress)
+  let savedDegree = 0;
+  let cardsClass = isMobile ? '' : 'imgoflist';
 
   function childNodes(e) {
+    if (!isMobile) {
     const children = e.target.parentNode.parentNode.children;
     const imgsLength = children.length;
     const degreeAmount = 10;
@@ -24,17 +26,17 @@ function Home(props) {
         if (i < median) {
           leftPattern -= degreeAmount;
           finalRotate = leftPattern * -1;
-          console.log("slideOut in rotateLeft ", rotateLeft);
+          //console.log("slideOut in rotateLeft ", rotateLeft);
         } else {
-          console.log(rightPattern);
+          //console.log(rightPattern);
           rightPattern += degreeAmount;
           finalRotate = Math.abs(rightPattern);
-          console.log("slideOut in rotateRight ", finalRotate);
+          //console.log("slideOut in rotateRight ", finalRotate);
         }
 
-        console.log(finalRotate);
+        //console.log(finalRotate);
 
-        console.log(i);
+        //console.log(i);
         const pokeChild = children[i].children[0];
         pokeChild.style.transform = `rotate(${finalRotate}deg)`;
         pokeChild.style.transformOrigin = "left bottom";
@@ -43,10 +45,12 @@ function Home(props) {
 
       rotateToBe = false;
     }
+
+  }
   }
 
   function closeNodes (e) {
-    console.log('This has closed');
+    //console.log('This has closed');
     const children = e.target.parentNode.parentNode.children;
     const imgsLength = children.length;
 
@@ -63,7 +67,7 @@ function Home(props) {
   }
 
   return (
-    <div onMouseOver={childNodes} onMouseOut={closeNodes}>
+    <div onMouseOver={childNodes} onMouseLeave={closeNodes}>
       {props.pokemonList.map((Pokemon, index) => {
         return (
           <Link
@@ -73,7 +77,7 @@ function Home(props) {
               state: { pokemon: Pokemon },
             }}
           >
-            <img className='imgoflist'src={`${Pokemon.image}`} alt={`${Pokemon.name}`} />
+            <img className={cardsClass} src={`${Pokemon.image}`} alt={`${Pokemon.name}`}/>
           </Link>
         );
       })}
