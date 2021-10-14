@@ -7,7 +7,7 @@ function Home(props) {
   let rotateLeft = 0;
   let rotateToBe = true;
   let savedDegree = 0;
-  let cardsClass = isMobile ? '' : 'imgoflist';
+  let cardsClass = isMobile ? ['divmobile', 'mobileList'] : ['divdesktop', 'imgoflist'];
 
   function childNodes(e) {
     if (!isMobile) {
@@ -67,7 +67,7 @@ function Home(props) {
   }
 
   return (
-    <div onMouseOver={childNodes} onMouseLeave={closeNodes}>
+    <div className={cardsClass[0]} onMouseOver={childNodes} onMouseLeave={closeNodes}>
       {props.pokemonList.map((Pokemon, index) => {
         return (
           <Link
@@ -77,7 +77,7 @@ function Home(props) {
               state: { pokemon: Pokemon },
             }}
           >
-            <img className={cardsClass} src={`${Pokemon.image}`} alt={`${Pokemon.name}`}/>
+            <img className={cardsClass[1]} src={`${Pokemon.image}`} alt={`${Pokemon.name}`}/>
           </Link>
         );
       })}

@@ -6,3 +6,13 @@
     margin-top: 100px;
     max-width: 100px;
 }
+
+.divmobile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.mobileList {
+    max-width: 150px;
+}
