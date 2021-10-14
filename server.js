@@ -32,11 +32,17 @@ const formatName = name => {
 // This gets all pokemon
 app.get('/api/pokemon', (_, res) => {
     console.log('Hi, there');
-    db.all("SELECT * FROM Energy", (err, rows) => {
+    db.all(`SELECT *
+    FROM Trainer
+    WHERE "deck-id" = "Water-Metal"
+    UNION
+    SELECT *
+    FROM Energy
+    WHERE "deck-id" = "Water-Metal"`, (err, rows) => {
         if (err) {
             console.log(err);
         }
-        
+        console.log(rows[0].row_id);
         res.send({Pokemon: rows});
     });
 
