@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { isMobile } from "react-device-detect";
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from "react";
 import "./Home.css";
 
 function Home(props) {
@@ -8,17 +8,15 @@ function Home(props) {
   let cardsClass = isMobile
     ? ["divmobile", "mobileList"]
     : ["divdesktop", "imgoflist"];
-  const [idPrint, setIdPrint] = useState('');
+  const [idPrint, setIdPrint] = useState("");
 
   useEffect(() => {
-    setIdPrint('Select a card');
+    setIdPrint("Select a card");
   }, []);
 
   function cardInfo(e) {
     setIdPrint(e.target.alt);
   }
-
-  
 
   function childNodes(e) {
     if (!isMobile) {
@@ -60,7 +58,6 @@ function Home(props) {
     const children = e.target.parentNode.parentNode.children;
     const imgsLength = children.length;
 
-
     if (!rotateToBe) {
       for (let i = 0; i < imgsLength; i++) {
         const pokeChild = children[i].children[0];
@@ -74,17 +71,14 @@ function Home(props) {
   }
 
   function deckChoice(e) {
-      props.setChosenDeck(e.target.innerText);
+    props.setChosenDeck(e.target.innerText);
   }
 
-  function deckNotChoice(e) {
-    
-  }
+  function deckNotChoice(e) {}
 
-
-  function deckShown () {
-    if (props.chosenDeck !== 'Random') {  
-    return props.pokemonList.map((Pokemon, index) => {
+  function deckShown() {
+    if (props.chosenDeck !== "Random") {
+      return props.pokemonList.map((Pokemon, index) => {
         return (
           <Link
             key={index}
@@ -98,31 +92,49 @@ function Home(props) {
               onMouseEnter={cardInfo}
               src={`${Pokemon.image}`}
               alt={`${Pokemon.name}`}
+              style={{borderRadius: '5%'}}
             />
           </Link>
         );
-      })
-
+      });
     }
   }
 
   return (
-    <div
-      className={cardsClass[0]}
-    >
-      <div id='deckTexts'>
-      <h5 id='header'>Deck Type</h5>
-      <p className='choice' id='water' onMouseOver={deckChoice} onMouseLeave={deckNotChoice}>Water-Metal</p>
-      <p className='choice' id='fire' onMouseOver={deckChoice} onMouseLeave={deckNotChoice}>Fighting-Electric</p>
-      <p className='choice' id='random' onMouseOver={deckChoice} onMouseLeave={deckNotChoice}>Random</p>
+    <div className={cardsClass[0]}>
+      <div id="deckTexts">
+        <h5 id="header">Deck Type</h5>
+        <p
+          className="choice"
+          id="water"
+          onMouseOver={deckChoice}
+          onMouseLeave={deckNotChoice}
+        >
+          Water-Metal
+        </p>
+        <p
+          className="choice"
+          id="fire"
+          onMouseOver={deckChoice}
+          onMouseLeave={deckNotChoice}
+        >
+          Fighting-Electric
+        </p>
+        <p
+          className="choice"
+          id="random"
+          onMouseOver={deckChoice}
+          onMouseLeave={deckNotChoice}
+        >
+          Random
+        </p>
       </div>
 
       <p>{props.chosenDeck} has been chosen.</p>
       <p>Card Name: {idPrint}</p>
 
-      <div onMouseOver={childNodes}
-      onMouseLeave={closeNodes}>
-      {deckShown()}
+      <div onMouseOver={childNodes} onMouseLeave={closeNodes}>
+        {deckShown()}
       </div>
     </div>
   );

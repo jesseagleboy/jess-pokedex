@@ -1,10 +1,10 @@
+
+
 .imgoflist {
     position: absolute;
-    left: 0px;
-    top: 0px;
-    margin-left: 500px;
-    margin-top: 100px;
-    max-width: 100px;
+    left: 45%;
+    top: 25%;
+    max-width: 15%;
 }
 
 #deckTexts {
