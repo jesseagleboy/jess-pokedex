@@ -2,9 +2,48 @@
     position: absolute;
     left: 0px;
     top: 0px;
-    margin-left: 200px;
+    margin-left: 500px;
     margin-top: 100px;
     max-width: 100px;
+}
+
+#deckTexts {
+    display: grid;
+    text-align: center;
+    grid-template-areas: 
+    ". header ."
+    "water fire random";
+    justify-content: center;
+    grid-column-gap: 100px;
+    grid-row-gap: 10px;
+}
+
+#header {
+    grid-area: header;
+}
+
+#water {
+    grid-area: water;
+}
+
+#fire {
+    grid-area: fire;
+}
+
+#random {
+    grid-area: random;
+}
+
+.choice::after {
+    display: block;
+    content: '';
+    border-bottom: 2px black solid;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+}
+
+.choice:hover:after {
+    transform: scaleX(1);
 }
 
 .divmobile {

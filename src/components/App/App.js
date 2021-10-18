@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Pokemon from "../Pokemon/Pokemon";
 import Home from '../Home/Home';
 
-const getPokemonList = async () => {
-  const response = await fetch(`/api/pokemon`);
+const getPokemonList = async (chosenDeck) => {
+  const response = await fetch(`/api/pokemon/${chosenDeck}`);
   console.log(response);
   if (response.ok) {
     const jsonResponse = await response.json();
@@ -16,6 +16,8 @@ const getPokemonList = async () => {
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
+  const [deckID, setDeckID] = useState('');
+  const [chosenDeck, setChosenDeck] = useState('');
 
   console.log(pokemonList);
 
@@ -23,19 +25,19 @@ function App() {
   useEffect(() => {
     // Use effect function cant be async, so create an inner async function to do async stuff
     async function doEffect() {
-      const pokemonList = await getPokemonList();
-      console.log(pokemonList);
+      const pokemonList = await getPokemonList(chosenDeck);
       setPokemonList(pokemonList);
+      setDeckID(pokemonList[0].deckID);
     }
     doEffect();
-  }, []); // Empty array here means "only do this the first time the component gets mounted"
+  }, [chosenDeck]); // Empty array here means "only do this the first time the component gets mounted"
 
   return (
     <Router>
       <div className="App">
         <Switch>
           <Route exact path='/'>
-            <Home pokemonList={pokemonList}/>
+            <Home pokemonList={pokemonList} deckID={deckID} setChosenDeck={setChosenDeck} chosenDeck={chosenDeck}/>
           </Route>
           <Route path='/:category/:id/:name'>
             <Pokemon />
