@@ -16,7 +16,6 @@ const getPokemonList = async (chosenDeck) => {
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
-  const [deckID, setDeckID] = useState('');
   const [chosenDeck, setChosenDeck] = useState('');
 
   console.log(pokemonList);
@@ -27,7 +26,6 @@ function App() {
     async function doEffect() {
       const pokemonList = await getPokemonList(chosenDeck);
       setPokemonList(pokemonList);
-      setDeckID(pokemonList[0].deckID);
     }
     doEffect();
   }, [chosenDeck]); // Empty array here means "only do this the first time the component gets mounted"
@@ -37,7 +35,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path='/'>
-            <Home pokemonList={pokemonList} deckID={deckID} setChosenDeck={setChosenDeck} chosenDeck={chosenDeck}/>
+            <Home pokemonList={pokemonList} setChosenDeck={setChosenDeck} chosenDeck={chosenDeck}/>
           </Route>
           <Route path='/:category/:id/:name'>
             <Pokemon />

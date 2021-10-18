@@ -83,7 +83,8 @@ function Home(props) {
 
 
   function deckShown () {
-      return props.pokemonList.map((Pokemon, index) => {
+    if (props.chosenDeck !== 'Random') {  
+    return props.pokemonList.map((Pokemon, index) => {
         return (
           <Link
             key={index}
@@ -101,6 +102,8 @@ function Home(props) {
           </Link>
         );
       })
+
+    }
   }
 
   return (
