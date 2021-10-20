@@ -1,3 +1,12 @@
+# Jess-Pokedex information
+This is currently in production. Currently the website is made for desktop but I do have design currently in place for mobile to work for card layout.
+## Features on Desktop
+<ul>
+  <li> Hover over a deck name to automatically switch to seeing those cards. </li>
+  <li> Hover over the deck itself to watch the cards fan out. All cards are selectable when rotated. To undo rotation, move mouse away from cards.
+</ul>
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
