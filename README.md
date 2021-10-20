@@ -1,4 +1,4 @@
-# Jess-Pokedex information
+# Jess-Pokedex Overview
 This is currently in production. Currently the website is made for desktop but I do have design currently in place for mobile to work for card layout.
 There is a website up on Heroku that gets updated when I push files to this repository.
 ### Website
