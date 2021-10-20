@@ -33,6 +33,10 @@ function App() {
   return (
     <Router>
       <div className="App">
+      <div className='header'>
+      <a href="https://fontmeme.com/pokemon-font/"><img src="https://fontmeme.com/permalink/211019/63c19ace88081b7e1ba06b9f05f1aa2c.png" alt="pokemon-font" border="0" /></a>
+        <img src='https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg' alt='logo'/>
+      </div>
         <Switch>
           <Route exact path='/'>
             <Home pokemonList={pokemonList} setChosenDeck={setChosenDeck} chosenDeck={chosenDeck}/>
