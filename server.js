@@ -1,20 +1,34 @@
 const express = require("express");
 const morgan = require("morgan");
-const sqlite3 = require("sqlite3");
+const {Client} = require("pg");
 const cors = require("cors");
 const path = require("path");
 const app = express();
 
-const db = new sqlite3.Database(
-  process.env.TEST_DATABASE || "src/Pokemon.db",
-  (err) => {
-    if (err) {
-      console.log(err);
-    }
 
-    console.log("Success!");
-  }
-);
+const client = new Client({
+  host: "localhost",
+  user: "",
+  port: 5002,
+  password: '',
+  database: 'Pokemon',
+})
+
+//console.log(client, 'client');
+
+client.connect();
+
+
+// const db = new sqlite3.Database(
+//   process.env.TEST_DATABASE || "src/Pokemon.db",
+//   (err) => {
+//     if (err) {
+//       console.log(err);
+//     }
+
+//     console.log("Success!");
+//   }
+// );
 
 app.use(express.static(path.join(__dirname, "build")));
 
@@ -33,20 +47,23 @@ const formatName = (name) => {
 app.get("/api/pokemon/:deckName", (req, res) => {
   console.log("Hi, there");
   const deckName = req.params.deckName;
-  db.all(
-    `SELECT * FROM Trainer
-    WHERE "deckID" = "${deckName}"
+  console.log(deckName, "deckName");
+  client.query(
+		`SELECT * FROM "Trainer"
+    WHERE "deckID" = '${deckName}'
     UNION ALL
-    SELECT * FROM Energy
-    WHERE "deckID" = "${deckName}"`,
-    (err, rows) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(rows);
-      res.send({ Pokemon: rows });
-    }
-  );
+    SELECT * FROM "Energy"
+    WHERE "deckID" = '${deckName}'`,
+		(err, rows) => {
+			if (err) {
+				console.log(err);
+			}
+			console.log(rows);
+
+			res.send(rows?.rows);
+			//client.end();
+		}
+	);
 });
 
 // This gets specific pokemon
@@ -63,15 +80,14 @@ app.get("/api/:category/:id/:name", (req, res) => {
   // General note here - you are being very inconsistent with your casing. Sometimes you write Name, sometimes name
   // sometimes Pokemon, sometimes pokemon, sometimes Energy, sometimes energy. you get the idea. you gotta be
   // consistent. I would recommend renaming everything to be camelCase
-  db.get(
-    "SELECT * FROM Energy WHERE id=$id",
-    { $id: req.params.id },
+  client.query(
+    `SELECT * FROM "${req.params.category}" WHERE id=${req.params.id}`,
     (err, row) => {
       if (err) {
         console.log(err);
       }
-      console.log(row);
-      res.status(200).send({ pokemon: row });
+      console.log(row?.rows, 'testing section');
+      res.status(200).send({ pokemon: row?.rows[0] });
     }
   );
 });

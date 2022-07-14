@@ -3,10 +3,12 @@ import { useLocation, useParams } from "react-router-dom";
 import './Pokemon.css';
 
 const getPokemon = async (pokemonParam) => {
-  const response = await fetch(`/api/${pokemonParam.category}/${pokemonParam.id}/${pokemonParam.name}`);
+  const response = await fetch(`http://localhost:3001/api/${pokemonParam.category}/${pokemonParam.id}/${pokemonParam.name}`);
+  console.log(response, 'specific pokemon response');
   console.log(response);
   if (response.ok) {
     const jsonResponse = await response.json();
+    console.log(jsonResponse, 'jsonResponse inside Pokemon');
     if (jsonResponse.hasOwnProperty("pokemon")) {
         return jsonResponse.pokemon;
     } else {
@@ -33,6 +35,7 @@ function Pokemon(props) {
       // Otherwise, we need to query it using the pokemon name from the path props
       } else {
         pokemon = await getPokemon(params);
+        console.log(pokemon, 'try pokemon')
       }
       setPokePage(pokemon)
     }
