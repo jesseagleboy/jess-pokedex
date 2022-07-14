@@ -40,7 +40,7 @@ function Pokemon(props) {
       setPokePage(pokemon)
     }
     doEffect()
-  }, [params.pokemon, pokemonState]); // Fetch on first time and whenever either of these change
+  }, [params.pokemon, params, pokemonState]); // Fetch on first time and whenever either of these change
 
   return (
     <div className='pokemon'>
