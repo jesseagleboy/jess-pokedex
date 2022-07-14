@@ -1,3 +1,21 @@
+# Jess-Pokedex Overview
+This is currently in production. Currently the website is made for desktop but I do have design currently in place for mobile to work for card layout.
+There is a website up on Heroku that gets updated when I push files to this repository.
+### Website
+[Jess-Pokedex](https://jess-pokedex.herokuapp.com/)
+## API
+There is an API if one wants to try it out. My SQL database is still being built while I structure my decks.
+### `GET api/pokemon/Water-Metal`
+This will get my Pokemon cards in my Water-Metal deck.
+### `GET api/pokemom/Fighting-Electric`
+This will get my Pokemon cards in my Fighting-Electric deck.
+## Features on Desktop
+<ul>
+  <li> Hover over a deck name to automatically switch to seeing those cards. </li>
+  <li> Hover over the deck itself to watch the cards fan out. All cards are selectable when rotated. To undo rotation, move mouse away from cards.
+</ul>
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
