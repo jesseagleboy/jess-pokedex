@@ -7,11 +7,11 @@ const app = express();
 
 
 const client = new Client({
-	host: "localhost",
-	user: "",
-	port: 5002,
-	password: "",
-	database: "Pokemon",
+	host: "ec2-54-172-175-251.compute-1.amazonaws.com",
+	user: "njrbbkodlzbgnd",
+	port: 5432,
+	password: "426eefce72d91ee90f3f12a0c71df2a956e90ab2e41d48d429e5cfa8bb33f345",
+	database: "ddb9k17ibmmido",
 	connectionString: process.env.DATABASE_URL,
 	ssl: {
 		rejectUnauthorized: false,
