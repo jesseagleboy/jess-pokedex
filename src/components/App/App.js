@@ -6,7 +6,7 @@ import Pokemon from "../Pokemon/Pokemon";
 import Home from "../Home/Home";
 
 const getPokemonList = async chosenDeck => {
-	const response = await fetch(`http://localhost:3001/api/pokemon/${chosenDeck}`);
+	const response = await fetch(`https://jess-pokedex.herokuapp.com/api/pokemon/${chosenDeck}`);
 	console.log(response);
   if (response.ok) {
     console.log('around here')

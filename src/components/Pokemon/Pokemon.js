@@ -3,7 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import './Pokemon.css';
 
 const getPokemon = async (pokemonParam) => {
-  const response = await fetch(`http://localhost:3001/api/${pokemonParam.category}/${pokemonParam.id}/${pokemonParam.name}`);
+  const response = await fetch(`https://jess-pokedex.herokuapp.com/api/${pokemonParam.category}/${pokemonParam.id}/${pokemonParam.name}`);
   console.log(response, 'specific pokemon response');
   console.log(response);
   if (response.ok) {
