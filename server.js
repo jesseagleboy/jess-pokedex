@@ -7,28 +7,21 @@ const app = express();
 
 
 const client = new Client({
-  host: "localhost",
-  user: "",
-  port: 5002,
-  password: '',
-  database: 'Pokemon',
-})
+	host: "localhost",
+	user: "",
+	port: 5002,
+	password: "",
+	database: "Pokemon",
+	connectionString: process.env.DATABASE_URL,
+	ssl: {
+		rejectUnauthorized: false,
+	},
+});
+
 
 //console.log(client, 'client');
 
 client.connect();
-
-
-// const db = new sqlite3.Database(
-//   process.env.TEST_DATABASE || "src/Pokemon.db",
-//   (err) => {
-//     if (err) {
-//       console.log(err);
-//     }
-
-//     console.log("Success!");
-//   }
-// );
 
 app.use(express.static(path.join(__dirname, "build")));
 
