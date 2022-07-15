@@ -13,9 +13,9 @@ const client = new Client({
 	password: "",
 	database: "Pokemon",
 	connectionString: process.env.DATABASE_URL,
-	// ssl: {
-	// 	rejectUnauthorized: false,
-	// },
+	ssl: {
+		rejectUnauthorized: false,
+	},
 });
 
 
