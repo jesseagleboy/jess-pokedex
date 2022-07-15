@@ -12,10 +12,10 @@ const client = new Client({
 	port: 5002,
 	password: "",
 	database: "Pokemon",
-	connectionString: process.env.DATABASE_URL,
-	ssl: {
-		rejectUnauthorized: false,
-	},
+	// connectionString: process.env.DATABASE_URL,
+	// ssl: {
+	// 	rejectUnauthorized: false,
+	// },
 });
 
 
