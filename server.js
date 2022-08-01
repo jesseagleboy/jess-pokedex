@@ -8,11 +8,11 @@ require('dotenv').config();
 
 
 const client = new Client({
-	// host: process.env.db_host,
-	// user: process.env.db_user,
-	// port: process.env.db_port,
-	// password: process.env.password,
-	// database: process.env.database,
+	host: process.env.db_host,
+	user: process.env.db_user,
+	port: process.env.db_port,
+	password: process.env.password,
+	database: process.env.database,
 	connectionString: process.env.DATABASE_URL,
 	ssl: {
 		rejectUnauthorized: false,
