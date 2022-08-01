@@ -85,7 +85,7 @@ app.get("/api/:category/:id/:name", (req, res) => {
   );
 });
 
-// You need to send the index.html that loads all the react code for every route that isnt getting data from the API
+// // You need to send the index.html that loads all the react code for every route that isnt getting data from the API
 app.use("*", (_, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });

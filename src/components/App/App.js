@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Pokemon from "../Pokemon/Pokemon";
 import Home from "../Home/Home";
+import Error404 from "../404/Error404";
 
 const getPokemonList = async chosenDeck => {
 	const response = await fetch(`https://jess-pokedex.herokuapp.com/api/pokemon/${chosenDeck}`);
@@ -45,7 +46,8 @@ function App() {
 			<Router>
 				<Routes>   
 					<Route index path='/' element={<Home chosenDeck={chosenDeck} setChosenDeck={setChosenDeck} pokemonList={pokemonList} />} />
-					<Route path='/:category/:id/:name' element={<Pokemon />}></Route>
+					<Route path='/:category/:id/:name' element={<Pokemon />} />
+					<Route path='*' element={<Error404 />} />
 				</Routes>
 			</Router>
 		</>
