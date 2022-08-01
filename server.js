@@ -4,14 +4,15 @@ const {Client} = require("pg");
 const cors = require("cors");
 const path = require("path");
 const app = express();
+require('dotenv').config();
 
 
 const client = new Client({
-	host: "ec2-54-172-175-251.compute-1.amazonaws.com",
-	user: "njrbbkodlzbgnd",
-	port: 5432,
-	password: "426eefce72d91ee90f3f12a0c71df2a956e90ab2e41d48d429e5cfa8bb33f345",
-	database: "ddb9k17ibmmido",
+	host: process.env.db_host,
+	user: process.env.db_user,
+	port: process.env.db_port,
+	password: process.env.password,
+	database: process.env.database,
 	connectionString: process.env.DATABASE_URL,
 	ssl: {
 		rejectUnauthorized: false,
@@ -85,7 +86,7 @@ app.get("/api/:category/:id/:name", (req, res) => {
   );
 });
 
-// // You need to send the index.html that loads all the react code for every route that isnt getting data from the API
+// // You need to send the index.html that loads all the react code for every route that isn't getting data from the API
 app.use("*", (_, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
